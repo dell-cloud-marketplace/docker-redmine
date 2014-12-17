@@ -14,11 +14,15 @@ RUN apt-get update && apt-get install -yq \
     libmagickwand-dev \
     supervisor
 
-# Install Redmine
-RUN mkdir -p /app/redmine && \
-    wget -nv "http://www.redmine.org/releases/redmine-2.6.0.tar.gz" -O - | tar -zvxf - --strip=1 -C /app/redmine
-ADD database.yml /app/redmine/config/database.yml
+# Download Redmine archive and create backup directories
+RUN mkdir -p /app/redmine /tmp/redmine /tmp/nginx && \
+    wget -nv "http://www.redmine.org/releases/redmine-2.6.0.tar.gz" -O - | tar -zvxf - --strip=1 -C /tmp/redmine
+ADD database.yml /tmp/redmine/config/database.yml
 ADD nginx.conf /opt/nginx/conf/nginx.conf
+
+# Make a copy of the nginx configuration folder, in case an empty or non-existent host
+# folder is specified for the volume. We'll test for this in run.sh.
+RUN cp -R /opt/nginx/conf /tmp/nginx
 
 # Copy configuration files
 ADD run.sh /run.sh
@@ -32,7 +36,11 @@ RUN rm -rf /var/lib/mysql/*
 ADD create_redmine_db.sh /create_redmine_db.sh
 RUN chmod 755 /*.sh
 
-# Expose port
+# Expose volume folder for Redmine
+# Application, mysql data, nginx configuration and logs
+VOLUME ["/app/redmine", "/var/lib/mysql", "/opt/nginx/conf", "/var/log/nginx"]
+
+# Expose Redmine ports
 EXPOSE 3306 80 443
 
 CMD ["/run.sh"]
