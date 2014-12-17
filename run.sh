@@ -16,7 +16,6 @@ if [[ ! "$(ls -A $NGINX_CONF)" ]]; then
     cp -R $NGINX_CONF_TMP/* $NGINX_CONF
 fi
 
-
 # Test MySQL VOLUME_HOME_MYSQL has content
 if [[ ! -d $VOLUME_MYSQL/mysql ]]; then
    echo "=> An empty or uninitialized MySQL volume is detected in $VOLUME_MYSQL"

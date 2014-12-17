@@ -1,5 +1,7 @@
 #!/bin/bash
 
+REDMINE_APP="/app/redmine"
+
 # Start MySQL
 /usr/bin/mysqld_safe > /dev/null 2>&1 &
 
@@ -11,8 +13,7 @@ while [[ RET -ne 0 ]]; do
     RET=$?
 done
 
-#PASS=${MYSQL_PASS:-$(pwgen -s 12 1)}
-PASS="my_password"
+PASS=${MYSQL_PASS:-$(pwgen -s 12 1)}
 _word=$( [ ${MYSQL_PASS} ] && echo "preset" || echo "random" )
 echo "=> Creating MySQL redmine user with ${_word} password"
 
@@ -20,16 +21,18 @@ mysql -uroot -e "CREATE DATABASE redmine CHARACTER SET utf8;"
 mysql -uroot -e "CREATE USER 'redmine'@'%' IDENTIFIED BY '$PASS'"
 mysql -uroot -e "GRANT ALL PRIVILEGES ON *.* TO 'redmine'@'%' WITH GRANT OPTION"
 
-
 echo "=> Done!"
 
 echo "========================================================================"
 echo "You can now connect to this MySQL Server using:"
 echo ""
-echo "    mysql -uadmin -p$PASS -h<host> -P<port>"
+echo "    mysql -uredmine -p$PASS -h<host> -P<port>"
 echo ""
 echo "Please remember to change the above password as soon as possible!"
 echo "MySQL user 'root' has no password but only allows local connections"
 echo "========================================================================"
+
+# Inject Redmine mysql password in Redmine database.yml
+sed -i 's/$REDMINE_DB_PWD/'$PASS'/g' $REDMINE_APP/config/database.yml
 
 mysqladmin -uroot shutdown

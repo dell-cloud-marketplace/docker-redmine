@@ -12,16 +12,19 @@ RUN apt-get update && apt-get install -yq \
     imagemagick \
     libmysqlclient-dev \
     libmagickwand-dev \
+    pwgen \
     supervisor
 
 # Download Redmine archive and create backup directories
 RUN mkdir -p /app/redmine /tmp/redmine /tmp/nginx && \
-    wget -nv "http://www.redmine.org/releases/redmine-2.6.0.tar.gz" -O - | tar -zvxf - --strip=1 -C /tmp/redmine
+    wget -nv "http://www.redmine.org/releases/redmine-2.6.0.tar.gz" -O - \
+    | tar -zvxf - --strip=1 -C /tmp/redmine
 ADD database.yml /tmp/redmine/config/database.yml
 ADD nginx.conf /opt/nginx/conf/nginx.conf
 
-# Make a copy of the nginx configuration folder, in case an empty or non-existent host
-# folder is specified for the volume. We'll test for this in run.sh.
+# Make a copy of the nginx configuration folder, in case an empty or 
+# non-existent host folder is specified for the volume. 
+# We'll test for this in run.sh.
 RUN cp -R /opt/nginx/conf /tmp/nginx
 
 # Copy configuration files

@@ -8,6 +8,6 @@ production:
   database: redmine
   host: localhost
   username: redmine 
-  password: "my_password"
+  password: "$REDMINE_DB_PWD"
   encoding: utf8
 
