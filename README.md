@@ -17,16 +17,15 @@ Ruby on Rails     | see [docker-rails](https://github.com/dell-cloud-marketplace
 
 ## Usage
 
-### 1. Start the container
-If you wish to create data volumes, which will survive a restart or recreation of the container, please follow the instructions in [Advanced Usage](#advanced-usage).
+### 1. Start the Container
 
 #### A. Basic Usage
-Start the container:
+To start the container with:
 
 * A named container ("redmine")
 * Ports 80, 443 (Nginx) and 3306 (MySQL port) exposed
 
-As follows:
+Do:
 
 ```no-highlight
 sudo docker run -d -p 80:80 -p 443:443 -p 3306:3306 --name redmine dell/redmine
@@ -34,7 +33,7 @@ sudo docker run -d -p 80:80 -p 443:443 -p 3306:3306 --name redmine dell/redmine
 
 <a name="advanced-usage"></a>
 #### B. Advanced Usage
-Start your container with:
+To start your container with:
 
 * A named container ("redmine")
 * Ports 80, 443 (Nginx) and port 3306 (MySQL port) exposed
@@ -42,7 +41,7 @@ Start your container with:
 * A pre-defined password for the MySQL admin user.
 * A pre-defined password for the MySQL redmine user.
 
-As follows:
+Do:
 
 ```no-highlight
 sudo docker run -d \
@@ -56,4 +55,45 @@ sudo docker run -d \
  -e MYSQL_PASS="mypass" \
  -e REDMINE_PASS="mypass" \
  --name redmine dell/redmine
+```
+
+### 2. Check the Log Files
+
+If you haven't defined a MySQL password, the container will generate a random one. Check the logs for the password by running: 
+
+```no-highlight
+sudo docker logs redmine
+```
+
+You will see output like the following:
+
+```no-highlight
+========================================================================
+You can now connect to this MySQL Server using:
+
+   mysql admin -u admin -pca1w7dUhnIgI --host <host>  -h<host> -P<port>
+
+Please remember to change the above password as soon as possible!
+MySQL user 'root' has no password but only allows local connections
+========================================================================
+
+========================================================================
+You can now connect to the redmine MySQL database using:
+
+     mysql -uredmine -pe2rae1jiefi -h<host> -P<port>
+
+Please remember to change the above password as soon as possible!
+========================================================================
+
+```
+
+Make a secure note of:
+
+* The admin user password (in this case **ca1w7dUhnIgI**)
+* The joomla user password (in this case **Me2rae1jiefi**)
+
+Next, test the **admin** user connection to MySQL:
+
+```no-highlight
+mysql -uadmin -pca1w7dUhnIgI -h127.0.0.1 -P3306
 ```
