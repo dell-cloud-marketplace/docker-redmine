@@ -97,3 +97,45 @@ Next, test the **admin** user connection to MySQL:
 ```no-highlight
 mysql -uadmin -pca1w7dUhnIgI -h127.0.0.1 -P3306
 ```
+## Test your Deployment
+
+The Redmine application can take some time to run due to scripts executed at container start up. This usually is under a minute. You can check the progress by following the logs '**sudo docker logs --follow redmine**' until the Nginx service is running.
+
+To access the website, open:
+```no-highlight
+http://localhost
+```
+Or:
+
+```no-highlight
+https://localhost
+```
+
+**We strongly recommend that you connect via HTTPS**, for this step, and all subsequent administrative tasks, if the container is running outside your local machine (e.g. in the Cloud). Your browser will warn you that the certificate is not trusted. If you are unclear about how to proceed, please consult your browser's documentation on how to accept the certificate.
+
+Or with cURL:
+```no-highlight
+curl http://localhost
+```
+### Nginx Configuration
+
+If you used the volume mapping option as listed in the [Advanced Usage](#advanced-usage), you can directly change the Nginx configuration under **/data/nginx/** on the host. A restart of the Nginx server is required once changes have been made.
+
+* Restart Nginx Configuration
+
+```no-highlight
+supervisorctl restart nginx
+```
+
+As the Nginx service does a restart the child processes (Passenger) will also do a restart, spawning a new pid. Please note the below message will occur in the docker logs as a result:
+
+```no-highlight
+2014-12-16 12:15:38,083 CRIT reaped unknown pid 2806)
+2014-12-16 12:15:38,085 CRIT reaped unknown pid 2811)
+2014-12-16 12:15:39,118 CRIT reaped unknown pid 2842)
+```
+## Reference
+
+### Image Details
+
+Pre-built Image   | [https://registry.hub.docker.com/u/dell/redmine](https://registry.hub.docker.com/u/dell/redmine)
