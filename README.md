@@ -90,7 +90,7 @@ Please remember to change the above password as soon as possible!
 Make a secure note of:
 
 * The admin user password (in this case **ca1w7dUhnIgI**)
-* The joomla user password (in this case **Me2rae1jiefi**)
+* The redmine user password (in this case **Me2rae1jiefi**)
 
 Next, test the **admin** user connection to MySQL:
 
