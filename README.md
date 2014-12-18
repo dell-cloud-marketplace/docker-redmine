@@ -39,7 +39,8 @@ Start your container with:
 * A named container ("redmine")
 * Ports 80, 443 (Nginx) and port 3306 (MySQL port) exposed
 * Four data volumes (which will survive a restart or recreation of the container). The Redmine application files are available in **/app/redmine** on the host. The Nginx website configuration files are available in **/data/nginx** on the host. The Nginx log files are available in **/var/log/nginx** on the host. The MySQL data is available in ***/data/mysql*** on the host.
-* A predefined password for the MySQL admin user.
+* A pre-defined password for the MySQL admin user.
+* A pre-defined password for the MySQL redmine user.
 
 As follows:
 
@@ -53,5 +54,6 @@ sudo docker run -d \
  -v /data/nginx:/opt/nginx/conf \
  -v /data/mysql:/var/lib/mysql \
  -e MYSQL_PASS="mypass" \
+ -e REDMINE_PASS="mypass" \
  --name redmine dell/redmine
 ```
