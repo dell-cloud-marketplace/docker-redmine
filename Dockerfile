@@ -30,6 +30,7 @@ RUN cp -R /opt/nginx/conf /tmp/nginx
 # Copy configuration files
 ADD run.sh /run.sh
 RUN chmod 755 /*.sh
+ADD my.cnf /etc/mysql/conf.d/my.cnf
 ADD supervisord-nginx.conf /etc/supervisor/conf.d/supervisord-nginx.conf
 
 # Remove pre-installed database

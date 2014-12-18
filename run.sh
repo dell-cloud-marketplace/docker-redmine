@@ -51,6 +51,7 @@ mkdir public/plugin_assets
 chown -R www-data:www-data files log tmp public/plugin_assets config.ru
 chmod -R 755 files log tmp public/plugin_assets
 
+echo "=> Start database migration, this might take a while."
 # Creates the database structure and load sample data
 RAILS_ENV=production bundle exec rake db:migrate
 RAILS_ENV=production REDMINE_LANG=en-GB rake redmine:load_default_data
