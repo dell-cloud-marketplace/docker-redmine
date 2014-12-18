@@ -134,6 +134,15 @@ As the Nginx service does a restart the child processes (Passenger) will also do
 2014-12-16 12:15:38,085 CRIT reaped unknown pid 2811)
 2014-12-16 12:15:39,118 CRIT reaped unknown pid 2842)
 ```
+
+## Getting Started
+
+There is a comprehensive documentation on using Redmine, forums and also an online shared demo which you can try. The following links might assist you:
+
+* [Redmine Guide](http://www.redmine.org/projects/redmine/wiki/Guide)
+* [Redmine Forums](http://www.redmine.org/projects/redmine/boards)
+* [Redmine Demo](http://demo.redmine.org/)
+
 ## Reference
 
 ### Image Details
