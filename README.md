@@ -143,6 +143,20 @@ There is a comprehensive documentation on using Redmine, forums and also an onli
 * [Redmine Forums](http://www.redmine.org/projects/redmine/boards)
 * [Redmine Demo](http://demo.redmine.org/)
 
+### Installing a plugin 
+
+* Copy your plugin directory into **#{RAILS_ROOT}/plugins**.
+If you used the volume mapping option as listed in the [Advanced Usage](#advanced-usage), you can directly copy the plugin directory under **/app/redmine/plugins** on the host
+* If the plugin requires a migration, run the following command in #{RAILS_ROOT} to upgrade your database:
+```no-highlight
+rake redmine:plugins:migrate RAILS_ENV=production
+```
+* Restart Redmine
+```no-highlight
+supervisorctl restart nginx
+```
+* You should now be able to see the plugin list in Administration -> Plugins
+
 ## Reference
 
 ### Image Details
