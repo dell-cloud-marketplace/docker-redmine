@@ -17,31 +17,31 @@ Ruby on Rails     | see [docker-rails](https://github.com/dell-cloud-marketplace
 
 ## Usage
 
-### 1. Start the Container
+### Start the Container
 
-#### A. Basic Usage
-To start the container with:
+#### Basic Usage
+Start your container with:
 
-* A named container ("redmine")
+* A named container (**redmine**)
 * Ports 80, 443 (Nginx) and 3306 (MySQL port) exposed
 
-Do:
+As follows:
 
 ```no-highlight
 sudo docker run -d -p 80:80 -p 443:443 -p 3306:3306 --name redmine dell/redmine
 ```
 
 <a name="advanced-usage"></a>
-#### B. Advanced Usage
-To start your container with:
+#### Advanced Usage
+Start your container with:
 
-* A named container ("redmine")
+* A named container (**redmine**)
 * Ports 80, 443 (Nginx) and port 3306 (MySQL port) exposed
 * Four data volumes (which will survive a restart or recreation of the container). The Redmine application files are available in **/app/redmine** on the host. The Nginx website configuration files are available in **/data/nginx** on the host. The Nginx log files are available in **/var/log/nginx** on the host. The MySQL data is available in ***/data/mysql*** on the host.
 * A pre-defined password for the MySQL admin user.
 * A pre-defined password for the MySQL redmine user.
 
-Do:
+As follows:
 
 ```no-highlight
 sudo docker run -d \
@@ -57,7 +57,7 @@ sudo docker run -d \
  --name redmine dell/redmine
 ```
 
-### 2. Check the Log Files
+### Check the Log Files
 
 If you haven't defined a MySQL password, the container will generate a random one. Check the logs for the password by running: 
 
@@ -103,19 +103,19 @@ The Redmine application can take some time to run due to scripts executed at con
 
 To access the website, open:
 ```no-highlight
-http://localhost
+http://<ip_address>
 ```
 Or:
 
 ```no-highlight
-https://localhost
+https://<ip_address>
 ```
 
 The container supports SSL, via a self-signed certificate. **We strongly recommend that you connect via HTTPS**, if the container is running outside your local machine (e.g. in the Cloud). Your browser will warn you that the certificate is not trusted. If you are unclear about how to proceed, please consult your browser's documentation on how to accept the certificate.
 
 Or with cURL:
 ```no-highlight
-curl http://localhost
+curl http://<ip_address>
 ```
 ### Nginx Configuration
 
