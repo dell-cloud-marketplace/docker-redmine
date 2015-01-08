@@ -1,6 +1,6 @@
 # docker-redmine
-This image installs [Redmine](http://www.redmine.org/) - an open-source web-based project management that supports multiple features like issue tracking, project wiki and forums. 
-It extends the [dell/docker-passenger-base](https://github.com/dell-cloud-marketplace/docker-passenger-base) image which adds Phusion Passengner and Ngnix. Please refer to the README.md for selected images for further information.
+This image installs [Redmine](http://www.redmine.org/), an open-source, web-based project management that supports multiple features like issue tracking, project wiki and forums. 
+The image extends [dell/docker-passenger-base](https://github.com/dell-cloud-marketplace/docker-passenger-base) which, in turn, adds Phusion Passenger and Ngnix to [dell/docker-rails-base](https://github.com/dell-cloud-marketplace/docker-rails-base/). Please refer to the image README.md files for further information.
 
 ## Components
 The software stack comprises the following components:
@@ -10,10 +10,10 @@ Name              | Version    | Description
 Ubuntu            | Trusty             | Operating system
 Redmine           | 2.6                | Project management system
 MySQL             | 5.6                | Database
-Phusion Passenger | see [docker-passenger-base](https://github.com/dell-cloud-marketplace/docker-passenger-base/)          | Web server
-Nginx             | see [docker-passenger-base](https://github.com/dell-cloud-marketplace/docker-passenger-base/)            | HTTP server & Reverse proxy
-Ruby              | see [docker-rails](https://github.com/dell-cloud-marketplace/docker-rails/) | Programming language
-Ruby on Rails     | see [docker-rails](https://github.com/dell-cloud-marketplace/docker-rails/)     | Web application framework
+Phusion Passenger | see [docker-passenger-base](https://github.com/dell-cloud-marketplace/docker-passenger-base/)          | Application server
+Nginx             | see [docker-passenger-base](https://github.com/dell-cloud-marketplace/docker-passenger-base/)            | Web server
+Ruby              | see [docker-rails-base](https://github.com/dell-cloud-marketplace/docker-rails-base/) | Programming language
+Ruby on Rails     | see [docker-rails-base](https://github.com/dell-cloud-marketplace/docker-rails-base/)     | Web application framework
 
 ## Usage
 
@@ -23,7 +23,7 @@ Ruby on Rails     | see [docker-rails](https://github.com/dell-cloud-marketplace
 Start your container with:
 
 * A named container (**redmine**)
-* Ports 80, 443 (Nginx) and 3306 (MySQL port) exposed
+* Ports 80, 443 (Nginx) and 3306 (MySQL) exposed
 
 As follows:
 
@@ -36,7 +36,7 @@ sudo docker run -d -p 80:80 -p 443:443 -p 3306:3306 --name redmine dell/redmine
 Start your container with:
 
 * A named container (**redmine**)
-* Ports 80, 443 (Nginx) and port 3306 (MySQL port) exposed
+* Ports 80, 443 (Nginx) and port 3306 (MySQL) exposed
 * Four data volumes (which will survive a restart or recreation of the container). The Redmine application files are available in **/app/redmine** on the host. The Nginx website configuration files are available in **/data/nginx** on the host. The Nginx log files are available in **/var/log/nginx** on the host. The MySQL data is available in ***/data/mysql*** on the host.
 * A pre-defined password for the MySQL admin user.
 * A pre-defined password for the MySQL redmine user.
@@ -145,7 +145,7 @@ There is a comprehensive documentation on using Redmine, forums and also an onli
 
 ### Installing a plugin 
 
-* Copy your plugin directory into **#{RAILS_ROOT}/plugins**.
+* Copy the plugin directory into **#{RAILS_ROOT}/plugins**.
 If you used the volume mapping option as listed in the [Advanced Usage](#advanced-usage), you can directly copy the plugin directory under **/app/redmine/plugins** on the host
 * If the plugin requires a migration, from within the container, run the following command in #{RAILS_ROOT} to upgrade your database:
 ```no-highlight
@@ -161,4 +161,4 @@ supervisorctl restart nginx
 
 ### Image Details
 
-Pre-built Image   | [https://registry.hub.docker.com/u/dell/redmine](https://registry.hub.docker.com/u/dell/redmine)
+Pre-built Image | [https://registry.hub.docker.com/u/dell/redmine](https://registry.hub.docker.com/u/dell/redmine)
