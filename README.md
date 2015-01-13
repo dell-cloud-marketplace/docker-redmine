@@ -1,5 +1,5 @@
 # docker-redmine
-This image installs [Redmine](http://www.redmine.org/), an open-source, web-based project management that supports multiple features like issue tracking, project wiki and forums. 
+This image installs [Redmine](http://www.redmine.org/), an open-source, web-based project management tool that supports multiple features like issue tracking, project wiki and forums. 
 The image extends [dell/docker-passenger-base](https://github.com/dell-cloud-marketplace/docker-passenger-base) which, in turn, adds Phusion Passenger and Ngnix to [dell/docker-rails-base](https://github.com/dell-cloud-marketplace/docker-rails-base/). Please refer to the image README.md files for further information.
 
 ## Components
