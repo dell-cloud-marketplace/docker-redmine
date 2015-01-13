@@ -113,25 +113,23 @@ https://<ip_address>
 
 The container supports SSL, via a self-signed certificate. **We strongly recommend that you connect via HTTPS**, if the container is running outside your local machine (e.g. in the Cloud). Your browser will warn you that the certificate is not trusted. If you are unclear about how to proceed, please consult your browser's documentation on how to accept the certificate.
 
+The default credentials are **admin/admin**. Please change these details immediately (click on **Admin** on the right hand-side, then Edit).
 
 Or with cURL:
 ```no-highlight
 curl http://<ip_address>
 ```
 
-The default credentials are **admin/admin**.
-
 ### Nginx Configuration
 
 If you used the volume mapping option as listed in the [Advanced Usage](#advanced-usage), you can directly change the Nginx configuration under **/data/nginx/** on the host. A restart of the Nginx server is required once changes have been made.
-
-* Restart Nginx Configuration
+To restart the configuration, enter the container using [nsenter](https://github.com/dell-cloud-marketplace/additional-documentation/blob/master/nsenter.md), and do:
 
 ```no-highlight
 supervisorctl restart nginx
 ```
 
-As the Nginx service does a restart the child processes (Passenger) will also do a restart, spawning a new pid. Please note the below message will occur in the docker logs as a result:
+As the Nginx service restarts, the child processes (Passenger) will also restart, spawning new PIDs. You will see messages similar to the following, in the Docker logs:
 
 ```no-highlight
 2014-12-16 12:15:38,083 CRIT reaped unknown pid 2806)
@@ -141,7 +139,7 @@ As the Nginx service does a restart the child processes (Passenger) will also do
 
 ## Getting Started
 
-There is a comprehensive documentation on using Redmine, forums and also an online shared demo which you can try. The following links might assist you:
+There is comprehensive online documentation on using Redmine, support forums and an online shared demo which you can try. The following links might assist you:
 
 * [Redmine Guide](http://www.redmine.org/projects/redmine/wiki/Guide)
 * [Redmine Forums](http://www.redmine.org/projects/redmine/boards)
