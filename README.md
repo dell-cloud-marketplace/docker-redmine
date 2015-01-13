@@ -113,10 +113,14 @@ https://<ip_address>
 
 The container supports SSL, via a self-signed certificate. **We strongly recommend that you connect via HTTPS**, if the container is running outside your local machine (e.g. in the Cloud). Your browser will warn you that the certificate is not trusted. If you are unclear about how to proceed, please consult your browser's documentation on how to accept the certificate.
 
+
 Or with cURL:
 ```no-highlight
 curl http://<ip_address>
 ```
+
+The default credentials are **admin/admin**.
+
 ### Nginx Configuration
 
 If you used the volume mapping option as listed in the [Advanced Usage](#advanced-usage), you can directly change the Nginx configuration under **/data/nginx/** on the host. A restart of the Nginx server is required once changes have been made.
