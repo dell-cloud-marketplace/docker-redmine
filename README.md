@@ -8,8 +8,8 @@ The software stack comprises the following components:
 Name              | Version    | Description
 ------------------|------------|------------------------------
 Ubuntu            | Trusty             | Operating system
-Redmine           | 2.6                | Project management system
-MySQL             | 5.6                | Database
+Redmine           | 3.0.1              | Project management system
+MySQL             | 5.5                | Database
 Phusion Passenger | see [docker-passenger-base](https://github.com/dell-cloud-marketplace/docker-passenger-base/)          | Application server
 Nginx             | see [docker-passenger-base](https://github.com/dell-cloud-marketplace/docker-passenger-base/)            | Web server
 Ruby              | see [docker-rails-base](https://github.com/dell-cloud-marketplace/docker-rails-base/) | Programming language
