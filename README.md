@@ -161,6 +161,13 @@ supervisorctl restart nginx
 
 ## Reference
 
+### Environmental Variables
+
+Variable    | Default  | Description
+------------|----------|------------------------------------
+MYSQL_PASS  | *random* |Password for MySQL user **admin**
+REDMINE_PASS| *random* |Password for MySQL user **redmine**
+
 ### Image Details
 
 Pre-built Image | [https://registry.hub.docker.com/u/dell/redmine](https://registry.hub.docker.com/u/dell/redmine)

@@ -44,6 +44,10 @@ RUN chmod 755 /*.sh
 # Application, mysql data, nginx configuration and logs
 VOLUME ["/app/redmine", "/var/lib/mysql", "/opt/nginx/conf", "/var/log/nginx"]
 
+# Environmental variables.
+ENV MYSQL_PASS ""
+ENV REDMINE_PASS ""
+
 # Expose Redmine ports
 EXPOSE 3306 80 443
 
